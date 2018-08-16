@@ -5,7 +5,7 @@ import configureStore from './app/store';
 import rootSaga from './app/sagas';
 import App from './app/app';
 import registerServiceWorker from './registerServiceWorker';
-//import '../src/app/styles/css/index.css';
+import '../src/app/styles/css/app.css';
 
 const store = configureStore();
 

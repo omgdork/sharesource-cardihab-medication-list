@@ -16,6 +16,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "sass:watch": "node-sass --watch --include-path scss src/app/styles/scss/app.scss src/app/styles/css/app.css",
+    "sass:build": "node-sass --include-path scss src/app/styles/scss/app.scss src/app/styles/css/app.css"
+  },
+  "devDependencies": {
+    "node-sass": "^4.9.3"
   }
 }

@@ -1,0 +1,58 @@
+$medication-result-main-list-border-color: #eee;
+$medication-result-sub-list-background-color: darken($medication-result-main-list-border-color, 10);
+$medication-result-sub-list-border-color: darken($medication-result-sub-list-background-color, 10);
+
+.container.medication-result {
+  > ul {
+    border-top: 1px solid $medication-result-main-list-border-color;
+
+    > li {
+      border: solid $medication-result-main-list-border-color;
+      border-width: 0 0 1px;
+      display: flex;
+      padding: 10px;
+
+      &.shown {
+        ul {
+          display: block;
+        }
+      }
+
+      .medication-name {
+        flex: 0 0 30%;
+      }
+
+      .medication-count {
+        background: $status-good-background-color;
+        border-radius: 10px;
+        color: $status-text-color;
+        font-weight: 600;
+        margin-left: 5px;
+        padding: 0 10px;
+
+        &.none {
+          background: $status-bad-background-color;
+        }
+      }
+
+      ul {
+        background: $medication-result-sub-list-background-color;
+        border: 1px solid $medication-result-sub-list-border-color;
+        border-radius: 10px;
+        display: none;
+        flex: 0 0 70%;
+        list-style: none;
+
+        li {
+          border: solid $medication-result-sub-list-border-color;
+          border-width: 0 0 1px;
+          padding: 10px;
+
+          &:last-child {
+            border: 0;
+          }
+        }
+      }
+    }
+  }
+}

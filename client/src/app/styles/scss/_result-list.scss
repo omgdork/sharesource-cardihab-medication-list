@@ -1,0 +1,28 @@
+.container.result {
+  .items {
+    display: flex;
+
+    fieldset {
+      border: 0;
+      flex: 0 0 50%;
+  
+      &.missing {
+        legend {
+          background: $status-bad-background-color;
+        }
+      }
+  
+      &.found {
+        legend {
+          background: $status-good-background-color;
+        }
+      }
+  
+      legend {
+        border-radius: 20px;
+        color: $status-text-color;
+        padding: 0 10px;
+      }
+    }
+  }
+}

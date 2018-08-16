@@ -1,0 +1,22 @@
+form {
+  padding: 10px;
+}
+
+.field {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0;
+
+  label {
+    flex: 0 0 100px;
+  }
+
+  input[type=text],
+  input[type=password],
+  textarea {
+    border: 1px solid $textbox-border-color;
+    border-radius: 10px;
+    padding: 10px;
+  }
+}

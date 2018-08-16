@@ -69,7 +69,10 @@ export function getMedication(token, searchParam) {
     const uint8Array = response.value;
     const data = JSON.parse(String.fromCharCode.apply(null, uint8Array));
 
-    return data;
+    return {
+      searchParam,
+      data,
+    };
   });
 }
 
@@ -96,16 +99,20 @@ export function* getMedications({ payload: { username, password, medicationList 
       yield put(setMedicationsGetting(true));
 
       const results = yield all(medicationList.split(',').map((item) => delayRequest(1000, getMedication(token, item.trim()))));
-      const internalServerError = results.find((result) => result.status === 500);
+      const internalServerError = results.find((result) => result.data.status === 500);
 
       if (internalServerError) {
-        throw new Error(`${internalServerError.error}: ${internalServerError.message}`);
+        throw new Error(`${internalServerError.data.error}: ${internalServerError.data.message}`);
       }
 
       yield put(getMedicationsSuccess(results));
     }
   } catch (error) {
-    yield put(getMedicationsError(error.message));
+    if (error.message === 'Invalid login.') {
+      yield put(loginError(error.message));
+    } else {
+      yield put(getMedicationsError(error.message));
+    }
   } finally {
     yield put(setMedicationsGetting(false));
   }

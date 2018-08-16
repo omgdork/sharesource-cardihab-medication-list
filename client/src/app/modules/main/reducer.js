@@ -9,7 +9,50 @@ import {
 
 export const initialState = {
   data: {
-    medications: [],
+    medications: [
+      // {
+      //   searchParam: 'Diacol',
+      //   data: [
+      //     {
+      //       id: '1',
+      //       displayName: 'Diacol 1',
+      //       appearance: 'tablet',
+      //       doseType: 'number',
+      //     },
+      //     {
+      //       id: '2',
+      //       displayName: 'Diacol 2',
+      //       appearance: 'syrup',
+      //       doseType: 'teaspoon',
+      //     },
+      //   ],
+      // },
+      // {
+      //   searchParam: 'Viagra',
+      //   data: [
+      //     {
+      //       id: '3',
+      //       displayName: 'Viagra',
+      //       appearance: 'tablet',
+      //       doseType: 'number',
+      //     },
+      //   ],
+      // },
+      // {
+      //   status: 'NOT_FOUND',
+      //   timestamp: '2018-05-30T05:24:34.458',
+      //   message: 'medication.not.found',
+      //   path: '/v1/medications/search',
+      //   details: [
+      //     {
+      //       errorObject: '',
+      //       field: '',
+      //       errorValue: 'tablet abc',
+      //       message: 'entity.not.found',
+      //     },
+      //   ],
+      // }
+    ],
     errors: {
       login: '',
       medications: '',

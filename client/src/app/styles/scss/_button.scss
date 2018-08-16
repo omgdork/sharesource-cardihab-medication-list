@@ -1,0 +1,13 @@
+.btn {
+  background: $button-background-color;
+  border: 2px solid $button-border-color;
+  border-radius: 5px;
+  color: $button-text-color;
+  cursor: pointer;
+  padding: 10px;
+  text-transform: uppercase;
+
+  &:hover {
+    background: darken($color: $button-background-color, $amount: 5);
+  }
+}

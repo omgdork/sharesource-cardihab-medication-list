@@ -27,7 +27,7 @@ class SearchForm extends PureComponent {
 
   render() {
     return (
-      <section>
+      <section className="medication-search container">
         <h2>Medication Search</h2>
         <form>
           <div className="field">

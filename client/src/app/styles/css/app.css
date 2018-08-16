@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  outline: none;
+  padding: 0; }
+
+html, body {
+  font: normal 14px/1.8 'Helvetica Neue', 'Arial', sans-serif; }
+
+main {
+  margin: 0 auto;
+  padding: 0 10px;
+  width: 940px; }
+
+.container {
+  margin: 0 auto;
+  padding: 10px; }
+
+.errors {
+  background-color: red;
+  border-radius: 10px;
+  color: #fff;
+  padding: 10px; }
+
+form {
+  padding: 10px; }
+
+.field {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0; }
+  .field label {
+    flex: 0 0 100px; }
+  .field input[type=text],
+  .field input[type=password],
+  .field textarea {
+    border: 1px solid #d5d5d5;
+    border-radius: 10px;
+    padding: 10px; }
+
+.btn {
+  background: #eee;
+  border: 2px solid #d5d5d5;
+  border-radius: 5px;
+  color: #666;
+  cursor: pointer;
+  padding: 10px;
+  text-transform: uppercase; }
+  .btn:hover {
+    background: #e1e1e1; }
+
+.container.medication-search textarea {
+  height: 3em;
+  resize: none;
+  width: 500px; }
+
+.container.medication-search textarea,
+.container.medication-search .btn {
+  margin: 0 0 0 100px; }
+
+.container.result .items {
+  display: flex; }
+  .container.result .items fieldset {
+    border: 0;
+    flex: 0 0 50%; }
+    .container.result .items fieldset.missing legend {
+      background: red; }
+    .container.result .items fieldset.found legend {
+      background: green; }
+    .container.result .items fieldset legend {
+      border-radius: 20px;
+      color: #fff;
+      padding: 0 10px; }
+
+.container.medication-result > ul {
+  border-top: 1px solid #eee; }
+  .container.medication-result > ul > li {
+    border: solid #eee;
+    border-width: 0 0 1px;
+    display: flex;
+    padding: 10px; }
+    .container.medication-result > ul > li.shown ul {
+      display: block; }
+    .container.medication-result > ul > li .medication-name {
+      flex: 0 0 30%; }
+    .container.medication-result > ul > li .medication-count {
+      background: green;
+      border-radius: 10px;
+      color: #fff;
+      font-weight: 600;
+      margin-left: 5px;
+      padding: 0 10px; }
+      .container.medication-result > ul > li .medication-count.none {
+        background: red; }
+    .container.medication-result > ul > li ul {
+      background: #d5d5d5;
+      border: 1px solid #bbbbbb;
+      border-radius: 10px;
+      display: none;
+      flex: 0 0 70%;
+      list-style: none; }
+      .container.medication-result > ul > li ul li {
+        border: solid #bbbbbb;
+        border-width: 0 0 1px;
+        padding: 10px; }
+        .container.medication-result > ul > li ul li:last-child {
+          border: 0; }

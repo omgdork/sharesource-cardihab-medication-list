@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  outline: none;
+  padding: 0;
+}
+
+html, body {
+  font: normal 14px/1.8 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+main {
+  margin: 0 auto;
+  padding: 0 10px;
+  width: 940px;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.errors {
+  background-color: $status-bad-background-color;
+  border-radius: 10px;
+  color: $status-text-color;
+  padding: 10px;
+}

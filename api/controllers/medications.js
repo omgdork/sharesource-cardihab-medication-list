@@ -2,16 +2,15 @@ const axios = require('axios');
 const config = require('../config/config.js');
 
 exports.index = (req, res) => {
-  const url = `${config.cardihab.medications}${req.body.medication_list}`;
+  const url = `${config.cardihab.medications}${req.body.medication}`;
 
   axios.get(url, {
     headers: {
-      Authorization: `Bearer ${req.token}`,
+      Authorization: req.headers.authorization,
     },
   }).then((response) => {
-    res.status(200).json(response.data);
+    res.status(200).send(response.data);
   }, (error) => {
-    res.send(error);
+    res.status(error.response.status).send(error.response.data);
   });
 };
-

@@ -1,0 +1,12 @@
+.container.medication-search {
+  textarea {
+    height: 3em;
+    resize: none;
+    width: 500px;
+  }
+
+  textarea,
+  .btn {
+    margin: 0 0 0 100px;
+  }
+}
