@@ -30,6 +30,8 @@ export function login(username, password) {
     }),
   }).then((response) => {
     if (response.status === 403) {
+      sessionStorage.removeItem('cardihab-username');
+      sessionStorage.removeItem('cardihab-token');
       throw new Error('Invalid login.');
     }
 
@@ -38,6 +40,7 @@ export function login(username, password) {
     const uint8Array = response.value;
     const token = String.fromCharCode.apply(null, uint8Array);
 
+    sessionStorage.setItem('cardihab-username', username);
     sessionStorage.setItem('cardihab-token', token);
 
     return token;
@@ -84,10 +87,13 @@ export function getMedication(token, searchParam) {
  */
 export function* getMedications({ payload: { username, password, medicationList } }) {
   try {
+    let sessionUsername = sessionStorage.getItem('cardihab-username');
     let token = sessionStorage.getItem('cardihab-token');
 
-    // Login if there's no token in WebStorage or if token is expired.
-    if (!token || (token && new Date(jwt_decode(token).exp * 1000) < new Date())) {
+    // Login if the username in the form is different from the username in storage,
+    // if there's no token in the Web Storage,
+    // or if token has expired.
+    if (sessionUsername !== username || !token || (token && new Date(jwt_decode(token).exp * 1000) < new Date())) {
       yield put(setLoggingIn(true));
       token = yield login(username, password);
     }

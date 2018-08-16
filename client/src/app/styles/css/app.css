@@ -48,6 +48,9 @@ form {
   text-transform: uppercase; }
   .btn:hover {
     background: #e1e1e1; }
+  .btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5; }
 
 .container.medication-search textarea {
   height: 3em;

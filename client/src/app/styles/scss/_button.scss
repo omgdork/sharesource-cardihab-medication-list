@@ -10,4 +10,9 @@
   &:hover {
     background: darken($color: $button-background-color, $amount: 5);
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
 }

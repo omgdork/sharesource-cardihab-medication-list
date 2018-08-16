@@ -1,8 +1,9 @@
 import {
-  LOGIN,
+  LOGGING_IN,
   LOGIN_SUCCESS,
   LOGIN_ERROR,
   MEDICATIONS_GET,
+  MEDICATIONS_GETTING,
   MEDICATIONS_GET_SUCCESS,
   MEDICATIONS_GET_ERROR,
 } from './constants';
@@ -66,12 +67,19 @@ export const initialState = {
 
 export default function mainReducer(state = initialState, action) {
   switch (action.type) {
-    case LOGIN:
+    case LOGGING_IN:
       return {
         ...state,
+        data: {
+          ...state.data,
+          errors: {
+            login: '',
+            medications: '',
+          },
+        },
         ui: {
           ...state.ui,
-          isLogging: true,
+          isLoggingIn: true,
         },
       };
     case LOGIN_SUCCESS:
@@ -86,7 +94,7 @@ export default function mainReducer(state = initialState, action) {
         },
         ui: {
           ...state.ui,
-          isLogging: false,
+          isLoggingIn: false,
         },
       };
     case LOGIN_ERROR:
@@ -101,10 +109,18 @@ export default function mainReducer(state = initialState, action) {
         },
         ui: {
           ...state.ui,
-          isLogging: false,
+          isLoggingIn: false,
         },
       };
     case MEDICATIONS_GET:
+      return {
+        ...state,
+        ui: {
+          ...state.ui,
+          isLoggingIn: true,
+        },
+      };
+    case MEDICATIONS_GETTING:
       return {
         ...state,
         data: {

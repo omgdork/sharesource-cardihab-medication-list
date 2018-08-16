@@ -17,8 +17,8 @@ class Main extends Component {
         username: '',
         password: '',
         medicationList: '',
-      }
-    }
+      },
+    };
   }
 
   onInputChange(field) {

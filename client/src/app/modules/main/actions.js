@@ -1,5 +1,4 @@
 import {
-  LOGIN,
   LOGGING_IN,
   LOGIN_SUCCESS,
   LOGIN_ERROR,
@@ -9,16 +8,6 @@ import {
   MEDICATIONS_GET_ERROR,
   SET_ERROR_MESSAGE,
 } from './constants';
-
-export function login(username, password) {
-  return {
-    type: LOGIN,
-    payload: {
-      username,
-      password,
-    },
-  };
-}
 
 export function setLoggingIn(isLoggingIn) {
   return {

@@ -42,7 +42,7 @@ class SearchForm extends PureComponent {
             <textarea id="txt-medication-list" name="medicationList" onChange={this.onInputChange}></textarea>
           </div>
           <div className="buttons-container">
-            <button type="button" className="btn" onClick={this.props.onSearch}>Search</button>
+            <button type="button" className="btn" onClick={this.props.onSearch} disabled={Object.values(this.state).some((field) => field === '')}>Search</button>
           </div>
         </form>
       </section>
