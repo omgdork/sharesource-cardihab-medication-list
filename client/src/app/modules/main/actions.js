@@ -29,12 +29,9 @@ export function setLoggingIn(isLoggingIn) {
   };
 }
 
-export function loginSucces(token) {
+export function loginSuccess() {
   return {
     type: LOGIN_SUCCESS,
-    payload: {
-      token,
-    },
   };
 }
 

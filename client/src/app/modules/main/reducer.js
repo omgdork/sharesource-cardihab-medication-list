@@ -9,6 +9,7 @@ import {
 
 export const initialState = {
   data: {
+    medications: [],
     errors: {
       login: '',
       medications: '',
@@ -34,6 +35,7 @@ export default function mainReducer(state = initialState, action) {
       return {
         ...state,
         data: {
+          ...state.data,
           errors: {
             ...state.data.errors,
             login: '',
@@ -48,6 +50,7 @@ export default function mainReducer(state = initialState, action) {
       return {
         ...state,
         data: {
+          ...state.data,
           errors: {
             ...state.data.errors,
             login: action.payload.error,
@@ -61,6 +64,10 @@ export default function mainReducer(state = initialState, action) {
     case MEDICATIONS_GET:
       return {
         ...state,
+        data: {
+          ...state.data,
+          medications: [],
+        },
         ui: {
           ...state.ui,
           isGettingMedications: true,
@@ -70,6 +77,7 @@ export default function mainReducer(state = initialState, action) {
       return {
         ...state,
         data: {
+          ...state.data,
           medications: action.payload.data,
           errors: {
             ...state.data.errors,
@@ -85,6 +93,7 @@ export default function mainReducer(state = initialState, action) {
       return {
         ...state,
         data: {
+          ...state.data,
           errors: {
             ...state.data.errors,
             medications: action.payload.error,

@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {
-  login,
-  setLoggingIn,
-  getMedications,
-  setMedicationsGetting,
-  setErrorMessage,
-} from './actions';
+import { getMedications } from './actions';
 import SearchForm from './components/search-form';
 
 class Main extends Component {
@@ -48,7 +42,22 @@ class Main extends Component {
 }
 
 Main.propTypes = {
-
+  data: PropTypes.shape({
+    medications: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      displayName: PropTypes.string.isRequired,
+      appearance: PropTypes.string.isRequired,
+      doseType: PropTypes.string.isRequired,
+    })).isRequired,
+    errors: PropTypes.shape({
+      login: PropTypes.string.isRequired,
+      medications: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+  ui: PropTypes.shape({
+    isLoggingIn: PropTypes.bool.isRequired,
+    isGettingMedications: PropTypes.bool.isRequired,
+  }).isRequired,
 };
 
 function mapStateToProps(state) {
@@ -59,11 +68,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    login: bindActionCreators(login, dispatch),
-    setLoggingIn: bindActionCreators(setLoggingIn, dispatch),
     getMedications: bindActionCreators(getMedications, dispatch),
-    setMedicationsGetting: bindActionCreators(setMedicationsGetting, dispatch),
-    setErrorMessage: bindActionCreators(setErrorMessage, dispatch),
   }
 }
 
