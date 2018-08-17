@@ -16,7 +16,7 @@ function missingTemplate(item, key) {
   return (
     <MedicationResultListItem key={key} canShowItems={false}>
       <span className="medication-name">
-        {item.details[0].errorValue}
+        {item.searchParam}
         <span className="medication-count none">0</span>
       </span>
     </MedicationResultListItem>
@@ -47,16 +47,19 @@ function foundTemplate(item, key) {
 
 MedicationResultList.propTypes = {
   missing: PropTypes.arrayOf(PropTypes.shape({
-    status: PropTypes.string.isRequired,
-    timestamp: PropTypes.string.isRequired,
-    message: PropTypes.string.isRequired,
-    path: PropTypes.string.isRequired,
-    details: PropTypes.arrayOf(PropTypes.shape({
-      errorObject: PropTypes.string.isRequired,
-      field: PropTypes.string.isRequired,
-      errorValue: PropTypes.string.isRequired,
+    searchParam: PropTypes.string.isRequired,
+    data: PropTypes.shape({
+      status: PropTypes.string.isRequired,
+      timestamp: PropTypes.string.isRequired,
       message: PropTypes.string.isRequired,
-    })).isRequired,
+      path: PropTypes.string.isRequired,
+      details: PropTypes.arrayOf(PropTypes.shape({
+        errorObject: PropTypes.string.isRequired,
+        field: PropTypes.string.isRequired,
+        errorValue: PropTypes.string.isRequired,
+        message: PropTypes.string.isRequired,
+      })).isRequired,
+    }).isRequired,
   })).isRequired,
   found: PropTypes.arrayOf(PropTypes.shape({
     searchParam: PropTypes.string.isRequired,

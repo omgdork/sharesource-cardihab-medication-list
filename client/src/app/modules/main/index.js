@@ -55,7 +55,7 @@ class Main extends Component {
     const found = [];
 
     this.props.main.data.medications.forEach((item) => {
-      if (item.status && item.status === 'NOT_FOUND') {
+      if (item.data.status && item.data.status === 'NOT_FOUND') {
         missing.push(item);
       } else {
         found.push(item);
@@ -66,7 +66,7 @@ class Main extends Component {
       <main>
         <SearchForm onInputChange={this.onInputChange} onSearch={this.onSearch} />
         {this.renderErrorMessage()}
-        <ResultList missing={missing.map((item) => item.details[0].errorValue)} found={found.map((item) => item.searchParam)} />
+        <ResultList missing={missing.map((item) => item.searchParam)} found={found.map((item) => item.searchParam)} />
         <MedicationResultList missing={missing} found={found} /> 
       </main>
     );
@@ -87,16 +87,19 @@ Main.propTypes = {
           })),
         }),
         PropTypes.shape({
-          status: PropTypes.string.isRequired,
-          timestamp: PropTypes.string.isRequired,
-          message: PropTypes.string.isRequired,
-          path: PropTypes.string.isRequired,
-          details: PropTypes.arrayOf(PropTypes.shape({
-            errorObject: PropTypes.string.isRequired,
-            field: PropTypes.string.isRequired,
-            errorValue: PropTypes.string.isRequired,
+          searchParam: PropTypes.string.isRequired,
+          data: PropTypes.shape({
+            status: PropTypes.string.isRequired,
+            timestamp: PropTypes.string.isRequired,
             message: PropTypes.string.isRequired,
-          })).isRequired,
+            path: PropTypes.string.isRequired,
+            details: PropTypes.arrayOf(PropTypes.shape({
+              errorObject: PropTypes.string.isRequired,
+              field: PropTypes.string.isRequired,
+              errorValue: PropTypes.string.isRequired,
+              message: PropTypes.string.isRequired,
+            })).isRequired,
+          }).isRequired,
         }),
       ])).isRequired,
       errors: PropTypes.shape({

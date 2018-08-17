@@ -123,13 +123,9 @@ export default function mainReducer(state = initialState, action) {
     case MEDICATIONS_GETTING:
       return {
         ...state,
-        data: {
-          ...state.data,
-          medications: [],
-        },
         ui: {
           ...state.ui,
-          isGettingMedications: true,
+          isGettingMedications: action.payload.isGetting,
         },
       };
     case MEDICATIONS_GET_SUCCESS:
