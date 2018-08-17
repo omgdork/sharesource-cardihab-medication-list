@@ -1,6 +1,6 @@
 import jwt_decode from 'jwt-decode';
-import { all, put, takeEvery } from 'redux-saga/effects';
-import { delayRequest } from '../../utilities';
+import { delay } from 'redux-saga';
+import { put, takeEvery, call } from 'redux-saga/effects';
 import { MEDICATIONS_GET } from './constants';
 import {
   setLoggingIn,
@@ -72,6 +72,12 @@ export function getMedication(token, searchParam) {
     const uint8Array = response.value;
     const data = JSON.parse(String.fromCharCode.apply(null, uint8Array));
 
+    if (data.status === 'UNAUTHORIZED') {
+      sessionStorage.removeItem('cardihab-username');
+      sessionStorage.removeItem('cardihab-token');
+      throw new Error('Token has expired.');
+    }
+
     return {
       searchParam,
       data,
@@ -104,7 +110,11 @@ export function* getMedications({ payload: { username, password, medicationList 
       yield put(loginSuccess());
       yield put(setMedicationsGetting(true));
 
-      const results = yield all(medicationList.split(',').map((item) => delayRequest(1000, getMedication(token, item.trim()))));
+      const results = yield medicationList.split(',').map((item) => {
+        call(delay, 1000);
+        return call(getMedication, token, item.trim());
+      });
+
       const internalServerError = results.find((result) => result.data.status === 500);
 
       if (internalServerError) {
@@ -114,10 +124,13 @@ export function* getMedications({ payload: { username, password, medicationList 
       yield put(getMedicationsSuccess(results));
     }
   } catch (error) {
-    if (error.message === 'Invalid login.') {
-      yield put(loginError(error.message));
-    } else {
-      yield put(getMedicationsError(error.message));
+    switch (error.message) {
+      case 'Invalid login.':
+      case 'Token has expired.':
+        yield put(loginError(error.message));
+        break;
+      default:
+        yield put(getMedicationsError(error.message));
     }
   } finally {
     yield put(setMedicationsGetting(false));
